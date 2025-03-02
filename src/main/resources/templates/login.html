@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>تسجيل الدخول</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.rtl.min.css">
+
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="assets/css/style_forgetPassw.css">
+    <link rel="stylesheet" href="assets/css/style_registration.css">
+
+    <script th:inline="javascript">
+        function validate() {
+            if (document.f.username.value == "" && document.f.password.value == "") {
+                alert(/*[[#{message.username} + #{message.password}]]*/);
+                document.f.username.focus();
+                return false;
+            }
+            if (document.f.username.value == "") {
+                alert(/*[[#{message.username}]]*/);
+                document.f.username.focus();
+                return false;
+            }
+            if (document.f.password.value == "") {
+                alert(/*[[#{message.password}]]*/);
+                document.f.password.focus();
+                return false;
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+        *{
+            font-family: 'Droid Arabic Kufi';
+        }
+    </style>
+</head>
+
+<body class="account-page">
+
+<div class="main-wrapper">
+    <div class="account-content">
+        <div class="container">
+            <div class="account-box">
+                <div class="account-logo">
+                    <a href="admin-dashboard.html"><img src="assets/img/adl.svg" alt=""></a>
+                </div>
+
+                <div class="account-wrapper">
+                    <h3 class="account-title">تسجيل الدخول</h3>
+
+                    <!-- Form de login -->
+                    <form name="f" th:action="@{/login}" method="POST" onsubmit="return validate();">
+                        <div class="form-group">
+                            <label for="username">البريد الالكتروني</label>
+                            <input class="form-control" type="text" name="username" id="username" required="required"
+                                   th:value="${username}" oninvalid="this.setCustomValidity('المرجو ادخال البريد الالكتروني')" oninput="setCustomValidity('')"/>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="password">كلمة المرور</label>
+                                    <input id="password" class="form-control" name="password" type="password" required="required"
+                                           th:value="${password}" oninvalid="this.setCustomValidity('المرجو ادخال كلمة المرور')" oninput="setCustomValidity('')"/>
+                                    <span class="fa fa-eye-slash" id="toggle-password"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary account-btn" type="submit">الدخول</button>
+                        </div>
+                    </form>
+
+                    <!-- Liens supplémentaires -->
+                    <a class="btn btn-primary account-btn1" th:href="@{/registration}">حساب جديد</a>
+                    <a class="btn btn-primary account-btn1" th:href="@{/forgetPassword}">نسيت كلمة السر</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/app.js"></script>
+</body>
+
+</html>
